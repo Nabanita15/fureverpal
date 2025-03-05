@@ -1,5 +1,5 @@
 import connection from "../connection";
-import { Cart } from "../models/cart";
+import { Cart } from "../../models/cart";
 
 export default async function addCart(req, res) {
     try {

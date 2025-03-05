@@ -1,5 +1,5 @@
 import connection from "../connection";
-import { User } from "../models/user"
+import { User } from "../../models/user"
 import bcrypt from "bcrypt"
 const saltRounds = 10;
 

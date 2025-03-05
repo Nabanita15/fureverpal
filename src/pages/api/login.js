@@ -1,5 +1,5 @@
 import { compare } from "bcrypt";
-import { User as usermodel } from "../models/user";
+import { User as usermodel } from "../../models/user";
 import jwt from "jsonwebtoken";
 import connection from "../connection";
 const secretKey = "secretKey"; 

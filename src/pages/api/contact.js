@@ -1,5 +1,5 @@
 import connection from "../connection";
-import { contact as contactmodel} from "../models/contact";
+import { contact as contactmodel} from "../../models/contact";
 export default async function contact(req,res){
     try {
         if(req.method ==="POST"){
