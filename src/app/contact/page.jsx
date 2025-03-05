@@ -22,7 +22,7 @@ const page = () => {
     const submithandler=(e)=>{
         e.preventDefault();
         try {
-            axios.post('http://localhost:3000/api/contact',input).then((res)=>{
+            axios.post('/api/contact',input).then((res)=>{
                 console.log('created successfully',res);
                 if(res.data.msg){
 

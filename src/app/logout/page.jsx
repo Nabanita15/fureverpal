@@ -27,6 +27,5 @@ export default function LogoutPage() {
 
     return <div>
                 <ToastContainer />
-
-    </div>
+            </div>
 }
