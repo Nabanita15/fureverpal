@@ -4,16 +4,15 @@ import wallpaper from "../../../public/images/wallpaperjpg.jpg";
 import { PiPawPrintFill } from 'react-icons/pi';
 import Link from 'next/link';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import {useRouter}from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Page = ({ params }) => {
   const [routes, setRoute] = useState('signup');
-  const { slug } =React.use(params); 
-
-  const router = useRouter();
+  const { slug } = React.use(params); // Unwrap params using React.use()
+  const router=useRouter();
   const [formdata, setFormdata] = useState({
-    name: "",
+    name: "", // Ensure initial values are defined
     email: "",
     password: ""
   });
@@ -34,35 +33,35 @@ const Page = ({ params }) => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
-    const controller = new AbortController(); // ✅ Added
     try {
       const timeout = setTimeout(() => controller.abort(), 5000);
-      const res = await axios.post('/api/signup', formdata, { signal: controller.signal });
+      const res = await axios.post('/api/signup', formdata);
       clearTimeout(timeout);
-      toast.success("Successfully created");
+      console.log("Successfully created", res.data);
+      toast.success("Successfully created")
       setFormdata({ name: "", email: "", password: "" });
       router.push("/login");
     } catch (error) {
-      toast.error("Error creating account: " + (error.response?.data?.msg || error.message)); // ✅ Fixed
+      toast.error("Error creating account", error);
     }
-  };
 
+  };
   const handleLogin = async (e) => {
     e.preventDefault();
-    const controller = new AbortController(); // ✅ Added
     try {
       const timeout = setTimeout(() => controller.abort(), 5000);
-      const res = await axios.post('/api/login', formdata, { signal: controller.signal });
+      const res = await axios.post('/api/login', formdata);
       clearTimeout(timeout);
-      toast.success("Successfully logged in");
-      localStorage.setItem("token", res.data.token);
+      console.log("Successfully created123", res.data);
+      toast.success("Successfully login")
+      localStorage.setItem("token",res.data.token)
       setFormdata({ name: "", email: "", password: "" });
       router.push("/cart");
     } catch (error) {
-      toast.error(error.response?.data?.msg || "Login failed"); // ✅ Fixed
+      toast.error( error.response.data.msg)
+      console.log("Account is not login successfully", error.response.data.msg);
     }
   };
-
   return (
     <div>
       <div
@@ -70,7 +69,7 @@ const Page = ({ params }) => {
         style={{ backgroundImage: `url(${wallpaper.src})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
       >
         <div className='customContainer z-20 flex justify-center items-center'>
-          <div className='bg-white w-[470px] rounded-2xl border-2 border-white p-10 sm:p-6 lg:p-8 xl:p-9'>
+          <div className='bg-white w-[470px]  rounded-2xl border-2 border-white p-10 sm:p-6 lg:p-8 xl:p-9 '>
             <div className='text-green text-5xl font-extrabold lg:text-3xl md:text-4xl sm:text-2xl flex justify-center'>
               FurEverP<PiPawPrintFill />ls
             </div>
@@ -80,12 +79,12 @@ const Page = ({ params }) => {
             </h1>
 
             {routes === 'signup' ? (
-              <form onSubmit={handlesubmit} className='flex flex-col gap-5 py-10 sm:py-3 lg:gap-4 lg:py-5'>
+              <form onSubmit={handlesubmit} className='flex flex-col gap-5 py-10 sm:py-3 lg:gap-4 lg:py-5 '>
                 <input
                   type='text'
                   placeholder='Name'
                   name='name'
-                  value={formdata.name || ""}
+                  value={formdata.name || ""} 
                   onChange={handleChange}
                   className="w-full rounded-3xl px-6 py-3 focus:outline-yellow focus:outline-2 boxShadow border-yellow border-2 sm:text-xs"
                 />
@@ -93,7 +92,7 @@ const Page = ({ params }) => {
                   type='email'
                   placeholder='Email'
                   name='email'
-                  value={formdata.email || ""}
+                  value={formdata.email || ""} 
                   onChange={handleChange}
                   className="w-full rounded-3xl px-6 py-3 focus:outline-yellow focus:outline-2 boxShadow border-yellow border-2 sm:text-xs"
                 />
@@ -101,15 +100,15 @@ const Page = ({ params }) => {
                   type='password'
                   placeholder='Password'
                   name='password'
-                  value={formdata.password || ""}
+                  value={formdata.password || ""} 
                   onChange={handleChange}
                   className="w-full rounded-3xl px-6 py-3 focus:outline-yellow focus:outline-2 boxShadow border-yellow border-2 sm:text-xs"
                 />
                 <button type='submit' className="rounded-3xl px-6 py-3 bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow sm:text-xs">
                   Signup
                 </button>
-                <p className='text-lg text-center font-medium cursor-pointer text-grey sm:text-base'>
-                  Already have an account? <Link href={"/login"} className='underline hover:text-yellow'>Login</Link>
+                <p className='text-lg text-center font-medium cursor-pointer text-grey  sm:text-base'>
+                  Already have an account? <Link href={"/login"} className='underline hover:text-yellow'>login</Link>
                 </p>
               </form>
             ) : (
