@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,4 +19,114 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+.customContainer{
+  width: 70%;
+  margin: auto;
+}
+@media screen and (max-width:1440px) {
+  .customContainer {
+    width: 90%;
+  }
+  
+  .slick-arrow.slick-prev.slider2 {
+    left: 1122px !important;
+  }
+ 
+}
+@media screen and (max-width:1280px) {
+  .customContainer {
+    width: 90%;
+  }
+
+  .slick-arrow.slick-prev.slider2 {
+    left: 762px !important;
+    top: -35px !important;
+    
+  }
+  .slick-arrow.slick-next.slider2{
+    top: -35px !important;
+  }
+}
+@media screen and (max-width:991px) {
+  .customContainer {
+    width: 90%;
+  }
+  .slick-arrow.slick-prev.slider2 {
+    left: 525px !important;
+    top: -35px !important;
+    
+  }
+  .slick-arrow.slick-next.slider2{
+    top: -35px !important;
+  }
+}
+@media screen and (max-width:767px) {
+  .customContainer {
+    width: 90%;
+  }
+  .slick-arrow.slick-prev.slider2 {
+    left: 0  !important;
+    top: -35px !important;
+    
+  }
+  .slick-arrow.slick-next.slider2{
+    top: -35px !important;
+  }
+}
+.backgroundcolor {
+  position: relative;
+}
+
+.backgroundcolor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(243, 243, 243, 0.8); 
+  z-index: 1; 
+}
+.backgroundcolor2 {
+  position: relative;
+}
+
+.backgroundcolor2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1; 
+}
+
+.yellowbg{
+  background: rgba(255, 183, 38, 0.6);
+}
+.slider .slick-prev{
+  left: -45px;
+}
+.slider .slick-prev:before{
+ font-size: 40px;
+ 
+}
+
+.slider .slick-next:before{
+  font-size: 40px;
+}
+.boxShadow:focus{
+ box-shadow: 1px 1px 5px 4px rgba(129, 196, 8,.5);
+}
+
+.mask {
+  font-size: 80px;
+  font-weight: bold;
+  color: white;
+  -webkit-mask-image: linear-gradient(to right, transparent, black);
+  mask-image: linear-gradient(to right, transparent, black);
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
 }
