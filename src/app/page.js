@@ -51,7 +51,7 @@ const organic = [
     price:"4.99 "
   },
   {
-    productImage: "/images/food.jfif",
+    productImage: "/images/food2.webp",
     topic: "Food",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
     price:"2.00 "
@@ -81,7 +81,7 @@ const organic = [
     price:"4.00 "
   },
   {
-    productImage: "/images/food3.jfif",
+    productImage: "/images/food2.webp",
     topic: "Food",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
     price:"12.9 "
