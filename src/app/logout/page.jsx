@@ -25,8 +25,8 @@ export default function LogoutPage() {
         logout();
     }, [router]); 
 
-    return <p>
+    return <div>
                 <ToastContainer />
 
-    </p>
+    </div>
 }
