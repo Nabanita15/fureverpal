@@ -34,7 +34,9 @@ const Page = ({ params }) => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
+      const timeout = setTimeout(() => controller.abort(), 5000);
       const res = await axios.post('/api/signup', formdata);
+      clearTimeout(timeout);
       console.log("Successfully created", res.data);
       toast.success("Successfully created")
       setFormdata({ name: "", email: "", password: "" });
@@ -47,7 +49,9 @@ const Page = ({ params }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      const timeout = setTimeout(() => controller.abort(), 5000);
       const res = await axios.post('/api/login', formdata);
+      clearTimeout(timeout);
       console.log("Successfully created123", res.data);
       toast.success("Successfully login")
       localStorage.setItem("token",res.data.token)
