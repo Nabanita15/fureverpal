@@ -133,7 +133,7 @@ const Page = () => {
                 </div>
                 <div className="flex gap-4 my-10 sm:flex-col">
                     <input type="text" placeholder="Coupon Code" className="rounded-2xl p-3" />
-                    <button className="rounded-3xl px-6 py-3 bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow sm:text-xs">
+                    <button className="rounded-3xl px-6 py-3 bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow sm:text-sm">
                         Submit Now
                     </button>
                 </div>
@@ -154,7 +154,7 @@ const Page = () => {
                             <span className="text-xl font-semibold sm:text-base md:text-lg">Total</span>
                             <span className="text-lg font-medium sm:text-sm md:text-base">{cartTotal + 3} $</span>
                         </div>
-                        <button className="rounded-3xl px-6 py-3 my-5 md:py-2 bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow sm:text-xs"     onClick={checkout}
+                        <button className="rounded-3xl px-6 py-3 my-5 md:py-2 bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow sm:text-sm"     onClick={checkout}
                         >
                         Proceed Checkout </button>
                     </div>

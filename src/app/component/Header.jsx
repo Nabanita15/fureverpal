@@ -101,12 +101,12 @@ const Header = () => {
           <div className='hidden'> </div>}
         <ul className='flex gap-5 items-center  font-semibold text-green sm:gap-3 '>
           <li className='rounded-full p-2 border border-yellow hover:bg-yellow md:text-sm text-2xl sm:text-base sm:p-1 lg:text-2xl md:p-1 lg:p-2'><FaSearch /></li>
-          <li className='md:text-xl text-4xl sm:text-lg  lg:text-3xl flex'><Link href={"/cart"}><FaCartShopping /></Link><span className='bg-yellow text-base w-[25px] h-[25px] sm:w-[20px] sm:h-[20px] sm:text-sm flex justify-center items-center text-white rounded-full'>{count}</span></li>
-          <li className='md:text-xl text-4xl sm:text-lg  lg:text-3xl relative' onClick={()=>handleMenu()}><FaUser />
+          <li className='md:text-xl text-4xl sm:text-xl  lg:text-3xl flex'><Link href={"/cart"}><FaCartShopping /></Link><span className='bg-yellow text-base w-[25px] h-[25px] sm:w-[20px] sm:h-[20px] sm:text-sm flex justify-center items-center text-white rounded-full'>{count}</span></li>
+          <li className='md:text-xl text-4xl sm:text-xl lg:text-3xl relative' onClick={()=>handleMenu()}><FaUser />
           {
             menu ?  
           <div className='hidden'></div>:
-          <ul className='bg-white p-5  absolute right-0 text-lg text-black top-[4.2rem] shadow-lg rounded-sm'>
+          <ul className='bg-white p-5  absolute right-0 text-lg text-black top-[4.2rem] sm:top-[3.1rem] sm:text-base md:top-[3.1rem] shadow-lg rounded-sm'>
             <li className='hover:text-yellow'><Link href={"/signup"}>Signup</Link></li>
             <li className='hover:text-yellow'><Link href={"/login"}>Login</Link></li>
             <li className='hover:text-yellow'><Link href={"/logout"}>Logout</Link></li>
