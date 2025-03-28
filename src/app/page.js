@@ -375,7 +375,7 @@ export default function Home() {
 
   useEffect(() => {
     // Get User Location and Set Default Country
-    fetch("https://ipinfo.io/json")
+    fetch("/api/ipinfo")
       .then((res) => res.json())
       .then((location) => {
         // const userCountry = formattedCountries.find(
@@ -432,7 +432,7 @@ console.log(SelectedCountry,"SelectedCountry")
           </div>
         </div>
       </div>
-      <h3>{SelectedCountry} country</h3>
+      <h3>{SelectedCountry} country123</h3>
       {/*......................shipping cart................... */}
       <div className="customContainer  grid grid-cols-4 gap-10 py-28 md:grid-cols-2 sm:grid-cols-1 sm:py-14">
         {shipping.map((item, index) => {
