@@ -17,7 +17,7 @@ import { GrServices } from "react-icons/gr";
 import { LiaCertificateSolid } from "react-icons/lia";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { FaQuoteRight } from "react-icons/fa";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createCart } from "./component/CartContext";
 
 const shipping = [
@@ -48,65 +48,65 @@ const organic = [
     productImage: "/images/clothes3.webp",
     topic: "Clothes",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"4.99 "
+    price: "4.99 "
   },
   {
     productImage: "/images/food2.webp",
     topic: "Food",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"2.00 "
+    price: "2.00 "
   },
   {
     productImage: "/images/product.jpg",
     topic: "Toys",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"7.99 "
+    price: "7.99 "
   },
   {
     productImage: "/images/clothes2.jpg",
     topic: "Clothes",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"45.29 "
+    price: "45.29 "
   },
   {
     productImage: "/images/food2.webp",
     topic: "Food",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"8.99 "
+    price: "8.99 "
   },
   {
     productImage: "/images/product4.webp",
     topic: "Toys",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"4.00 "
+    price: "4.00 "
   },
   {
     productImage: "/images/food2.webp",
     topic: "Food",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"12.9 "
+    price: "12.9 "
   },
   {
     productImage: "/images/product5.webp",
     topic: "Food",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"4.49 "
+    price: "4.49 "
   },
   {
     productImage: "/images/food5.webp",
     topic: "Food",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"9.99 "
+    price: "9.99 "
   }, {
     productImage: "/images/toy.webp",
     topic: "Toys",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"2.99 "
+    price: "2.99 "
   }, {
     productImage: "/images/toys2.jpg",
     topic: "Toys",
     product: "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt",
-    price:"4.49 "
+    price: "4.49 "
   },
 ]
 
@@ -248,7 +248,7 @@ const reviews = [
 ];
 const PrevArrow = ({ className, style, onClick }) => {
   return (
-    <div className={ `${className} slider2 `} style={{
+    <div className={`${className} slider2 `} style={{
       ...style, color: "#81c408",
       display: "flex",
       fontSize: "23px",
@@ -294,6 +294,7 @@ const NextArrow = ({ className, style, onClick }) => {
 }
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState('allproduct');
+  const [SelectedCountry,setSelectedCountry] =useState("")
   var settings = {
     dots: false,
     infinite: true,
@@ -301,7 +302,7 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed:5000
+    autoplaySpeed: 5000
   };
 
   var setting2 = {
@@ -313,19 +314,19 @@ export default function Home() {
     autoplay: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    autoplaySpeed:4000,
+    autoplaySpeed: 4000,
     responsive: [{
       breakpoint: 1024,
       settings: {
-        slidesToShow: 3,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+        slidesToShow: 3,
       }
- 
+
     }, {
       breakpoint: 768,
       settings: {
         slidesToShow: 2,
       }
- 
+
     }, {
       breakpoint: 600,
       settings: {
@@ -343,19 +344,19 @@ export default function Home() {
     autoplay: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    autoplaySpeed:4000,
+    autoplaySpeed: 4000,
     responsive: [{
       breakpoint: 1024,
       settings: {
         slidesToShow: 2,
       }
- 
+
     }, {
       breakpoint: 768,
       settings: {
         slidesToShow: 1,
       }
- 
+
     }, {
       breakpoint: 600,
       settings: {
@@ -365,16 +366,38 @@ export default function Home() {
 
   }
 
-  const filteredProducts = selectedTab === 'allproduct' 
-  ? organic 
-  : organic.filter(product => product.topic === selectedTab);
+  const filteredProducts = selectedTab === 'allproduct'
+    ? organic
+    : organic.filter(product => product.topic === selectedTab);
 
 
-  const {addToCart} =useContext(createCart)
+  const { addToCart } = useContext(createCart)
+
+  useEffect(() => {
+    // Get User Location and Set Default Country
+    fetch("https://geolocation-db.com/json/")
+      .then((res) => res.json())
+      .then((location) => {
+        // const userCountry = formattedCountries.find(
+        //   (c) => c.countryCode === location.country_code
+        // );
+        setSelectedCountry(location.country_code);
+        // if (userCountry) {
+        // } else {
+        //   setSelectedCountry(formattedCountries[0]);
+        // }
+      })
+      .catch((err) => console.error("Location fetch error:", err));
+
+  }, [])
+
+console.log(SelectedCountry,"SelectedCountry")
   return (
     <div className="">
       <div className="py-16 md:py-9 sm:py-7"></div>
       {/*....................search  product................ */}
+
+     
       <div
         className="w-full h-[60%] backgroundcolor "
         style={{ backgroundImage: `url(${wallpaper.src})`, backgroundSize: 'cover', backgroundPosition: 'center', }}>
@@ -409,7 +432,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+      <h3>{SelectedCountry} country</h3>
       {/*......................shipping cart................... */}
       <div className="customContainer  grid grid-cols-4 gap-10 py-28 md:grid-cols-2 sm:grid-cols-1 sm:py-14">
         {shipping.map((item, index) => {
@@ -431,25 +454,25 @@ export default function Home() {
           <h1 className="text-[40px] text-grey font-bold lg:text-4xl sm:text-2xl">Our Organic Products</h1>
           <ul className="flex gap-4 items-center sm:gap-2">
             <li
-              className={`text-lg py-2 px-5 lg:text-base sm:text-sm sm:py-2 sm:rounded-xl sm:px-2  lg:px-4 rounded-3xl cursor-pointer ${selectedTab=='allproduct' ?'bg-yellow':'bg-lightgrey '}`}
+              className={`text-lg py-2 px-5 lg:text-base sm:text-sm sm:py-2 sm:rounded-xl sm:px-2  lg:px-4 rounded-3xl cursor-pointer ${selectedTab == 'allproduct' ? 'bg-yellow' : 'bg-lightgrey '}`}
               onClick={() => setSelectedTab('allproduct')} // Fixed this
             >
               All Products
             </li>
             <li
-              className={`text-lg py-2 px-5 lg:text-base sm:text-sm sm:py-2 sm:rounded-xl sm:px-2  lg:px-4 rounded-3xl cursor-pointer ${selectedTab=='Food' ?'bg-yellow':'bg-lightgrey '}`}
+              className={`text-lg py-2 px-5 lg:text-base sm:text-sm sm:py-2 sm:rounded-xl sm:px-2  lg:px-4 rounded-3xl cursor-pointer ${selectedTab == 'Food' ? 'bg-yellow' : 'bg-lightgrey '}`}
               onClick={() => setSelectedTab('Food')} // Fixed this
             >
               Foods
             </li>
             <li
-              className={`text-lg py-2 px-5  lg:text-base sm:text-sm sm:py-2 sm:rounded-xl sm:px-2  lg:px-4  rounded-3xl cursor-pointer ${selectedTab=='Clothes' ?'bg-yellow':'bg-lightgrey '}`}
+              className={`text-lg py-2 px-5  lg:text-base sm:text-sm sm:py-2 sm:rounded-xl sm:px-2  lg:px-4  rounded-3xl cursor-pointer ${selectedTab == 'Clothes' ? 'bg-yellow' : 'bg-lightgrey '}`}
               onClick={() => setSelectedTab('Clothes')} // Fixed this
             >
               Clothes
             </li>
             <li
-              className={`text-lg py-2 px-5 lg:text-base sm:text-sm sm:py-2 sm:rounded-xl sm:px-2  lg:px-4 rounded-3xl cursor-pointer ${selectedTab=='Toys' ?'bg-yellow':'bg-lightgrey '}`}
+              className={`text-lg py-2 px-5 lg:text-base sm:text-sm sm:py-2 sm:rounded-xl sm:px-2  lg:px-4 rounded-3xl cursor-pointer ${selectedTab == 'Toys' ? 'bg-yellow' : 'bg-lightgrey '}`}
               onClick={() => setSelectedTab('Toys')} // Fixed this
             >
               Toys
@@ -478,7 +501,7 @@ export default function Home() {
                 <p className="text-[17px] xxl:text-[16px] lg:text-sm">{item.product}</p>
                 <ul className="flex gap-3 justify-between items-center">
                   <li className="text-xl font-semibold lg:text-base">${item.price} /kg</li>
-                  <button className="rounded-3xl px-2 py-1 flex gap-4 items-center xxl:gap-2 lg:text-base lg:gap-2 bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow" onClick={()=>addToCart(item)}>
+                  <button className="rounded-3xl px-2 py-1 flex gap-4 items-center xxl:gap-2 lg:text-base lg:gap-2 bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow" onClick={() => addToCart(item)}>
                     <FaShoppingBag />
                     Add to cart
                   </button>
@@ -516,14 +539,14 @@ export default function Home() {
                 <div className="mx-4 sm:mx-1" key={index}>
                   <div className="flex flex-col rounded-xl overflow-hidden border border-green h-fit cursor-pointer mx-4 lg:mx-5 sm:mx-2" >
                     <div className=" overflow-hidden">
-                        <Image src={item.productImage} alt="item1" width={900} height={900} className="w-full h-[220px] lg:h-[200px] sm:h-[200px] rounded-t-xl hover:scale-125 hover:transition-transform " />
+                      <Image src={item.productImage} alt="item1" width={900} height={900} className="w-full h-[220px] lg:h-[200px] sm:h-[200px] rounded-t-xl hover:scale-125 hover:transition-transform " />
                     </div>
                     <div className="flex flex-col gap-3 justify-center text-center p-5 rounded-b-xl lg:p-3">
                       <h1 className="text-xl font-semibold lg:text-base sm:text-sm">{item.topic}</h1>
                       <p className="text-[17px]  xxl:text-[16px] lg:text-base sm:text-sm">{item.product}</p>
                       <ul className="flex gap-3 justify-between items-center">
                         <li className="text-xl font-semibold lg:text-base sm:text-sm">{item.price}</li>
-                        <button className="rounded-3xl px-2 py-1 flex gap-4 items-center lg:text-base lg:gap-2 sm:text-sm bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow" onClick={()=>addToCart(item)}><FaShoppingBag />
+                        <button className="rounded-3xl px-2 py-1 flex gap-4 items-center lg:text-base lg:gap-2 sm:text-sm bg-green top-0 right-0 border-yellow border-2 text-white font-semibold cursor-pointer hover:bg-yellow" onClick={() => addToCart(item)}><FaShoppingBag />
                           Add to cart
                         </button>
                       </ul>
