@@ -375,13 +375,13 @@ export default function Home() {
 
   useEffect(() => {
     // Get User Location and Set Default Country
-    fetch("https://geolocation-db.com/json/")
+    fetch("https://ipinfo.io/json")
       .then((res) => res.json())
       .then((location) => {
         // const userCountry = formattedCountries.find(
         //   (c) => c.countryCode === location.country_code
         // );
-        setSelectedCountry(location.country_code);
+        setSelectedCountry(location.country);
         // if (userCountry) {
         // } else {
         //   setSelectedCountry(formattedCountries[0]);
