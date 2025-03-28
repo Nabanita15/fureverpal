@@ -17,7 +17,7 @@ import { GrServices } from "react-icons/gr";
 import { LiaCertificateSolid } from "react-icons/lia";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { FaQuoteRight } from "react-icons/fa";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { createCart } from "./component/CartContext";
 
 const shipping = [
@@ -294,7 +294,6 @@ const NextArrow = ({ className, style, onClick }) => {
 }
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState('allproduct');
-  const [SelectedCountry,setSelectedCountry] =useState("")
   var settings = {
     dots: false,
     infinite: true,
@@ -373,25 +372,8 @@ export default function Home() {
 
   const { addToCart } = useContext(createCart)
 
-  useEffect(() => {
-    // Get User Location and Set Default Country
-    fetch("/api/ipinfo")
-      .then((res) => res.json())
-      .then((location) => {
-        // const userCountry = formattedCountries.find(
-        //   (c) => c.countryCode === location.country_code
-        // );
-        setSelectedCountry(location.country);
-        // if (userCountry) {
-        // } else {
-        //   setSelectedCountry(formattedCountries[0]);
-        // }
-      })
-      .catch((err) => console.error("Location fetch error:", err));
 
-  }, [])
 
-console.log(SelectedCountry,"SelectedCountry")
   return (
     <div className="">
       <div className="py-16 md:py-9 sm:py-7"></div>
@@ -432,7 +414,6 @@ console.log(SelectedCountry,"SelectedCountry")
           </div>
         </div>
       </div>
-      <h3>{SelectedCountry} country123</h3>
       {/*......................shipping cart................... */}
       <div className="customContainer  grid grid-cols-4 gap-10 py-28 md:grid-cols-2 sm:grid-cols-1 sm:py-14">
         {shipping.map((item, index) => {
